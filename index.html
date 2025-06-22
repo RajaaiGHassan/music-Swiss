@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli:400,700,800,900');
+        @import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
+
+        :root {
+            --pearl: #ffffff;
+            --yellow: #fef102;
+            --blue: #0070be;
+            --red: #ed1c22;
+            --orange: #f69514;
+        }
+
+        body {
+            background-color: var(--pearl);
+            font-family: 'Didact Gothic', sans-serif;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, p, a {
+            margin: 0;
+        }
+        
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        
+        h1 {
+            position: relative;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: calc(5rem + 2vw);
+            font-weight: 600;
+            margin-bottom: 26px;
+        }
+        
+        .A {
+            writing-mode: vertical-rl;
+            display: inline-block;
+            font-size: calc(5rem + 2vw);  
+            font-weight: 600;
+            transform: translate(16%, -33%) rotate(-70deg);
+        }
+
+        .wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
+        
+        /* ============ MAIN GRID ============ */
+        .bauhaus {
+            position: relative;
+            transform: rotate(45deg);
+            min-width: 80vw;
+            max-width: 495px;
+            display: grid;
+            grid-template: 
+                ". middle ." 0.7fr 
+                "paragraph middle right" 1.85fr 
+                ". middle ." 0.8fr 
+                ". middle ." 0.8fr 
+                ". middle ." 1.1fr / 3fr 1fr 2fr;
+            margin: 0 auto;
+        }
+        
+        .bauhaus .text {
+            font-family: "Muli"; 
+            font-weight: 800;
+            font-size: calc(0.47rem + 1vw);
+            letter-spacing: -0.8px;
+        }
+            
+        .bauhaus .futura {
+            grid-area: middle;
+        }
+        
+        .bauhaus .rectangle {
+            width: 89%;
+            height: 100%;
+            grid-row: 3;
+            grid-column: 2 / 4;
+            margin-left: 29px;
+            background-color: var(--orange);
+        }
+        
+        .bauhaus .square {
+            justify-self: center;
+            width: 60%;
+            height: 100%;
+            grid-row: 5;
+            grid-column: 2;
+            background-color: var(--yellow);
+        }
+        
+        .bauhaus .circle {
+            width: 55px;
+            height: 55px;
+            grid-row: 2;
+            grid-column: 2;
+            align-self: end;
+            justify-self: right;
+            margin: 0 15px 0 0;
+            border-radius: 50%;
+            background-color: var(--red);
+        }
+        
+        .bauhaus .triangle {
+            position: absolute;
+            z-index: -1;
+            margin-top: -20px;
+            margin-left: 25px;
+            width: 0;
+            height: 0;
+            border: 0 solid transparent;
+            border-right-width: 35px;
+            border-left-width: 35px;
+            border-bottom: 90px solid var(--blue);
+            grid-row: 1;
+            grid-column: 2;
+            transform: translate(35%, -20%) rotate(20deg);
+        }
+        
+        .bauhaus .left-paragraph {
+            position: relative;
+            margin-right: -30px;
+            grid-area: paragraph;
+            display: grid;
+            grid-template: 
+                ". text"  
+                "line line" 0.08fr 
+                ". ." 0.35fr / 1fr 2fr;
+        }
+        
+        .bauhaus .left-paragraph .line {
+            grid-area: line;
+            background-color: black;
+            height: 10px;
+        }
+        
+        .bauhaus .left-paragraph .wrap {
+            position: absolute;
+            width: 100%;
+            right: 0;
+            margin-top: 5px;
+            grid-area: text;
+            display: grid;
+            grid-template: 
+                "top top" 
+                "left date" / 1fr 0.5fr;
+        }
+        
+        .bauhaus .left-paragraph .wrap .top {
+            grid-area: top;
+            width: 100%;
+        }
+        
+        .bauhaus .left-paragraph .wrap .left-text {
+            grid-area: left;
+        }
+        
+        .bauhaus .left-paragraph .wrap .date {
+            grid-area: date;
+            display: flex;
+            justify-content: center;
+            font-size: calc(1.7rem + 1vw);
+        }
+
+        .bauhaus .right {
+            margin-left: -15px;
+            grid-area: right;
+            display: grid;
+            grid-template: 
+                ". ." 1fr 
+                "wrap wrap" 
+                "line line" 0.25fr 
+                ". ." 0.14fr / 2fr 1fr;
+        }
+            
+        .bauhaus .right .wrap {
+            grid-area: wrap;
+        }
+        
+        .bauhaus .right .text b {
+            font-size: calc(0.75rem + 1vw);
+            font-weight: 800;        
+        }
+        
+        .bauhaus .right .line {
+            grid-area: line;
+            border-bottom: 10px solid black;
+        }
+        
+        .hint {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            font-weight: 700;
+            color: black;
+            transition: 0.2s;
+            padding: 10px;
+        }
+        
+        .hint:hover {
+            color: var(--blue);
+        }
+        
+        @media (max-width: 768px) {
+            .bauhaus .left-paragraph .text {
+                font-size: calc(0.36rem + 1.1vw);
+            }
+            
+            .bauhaus .left-paragraph .date {
+                font-size: calc(1.5rem + 1vw) !important;
+            }
+        }
+            
+        @media (max-width: 676px) {
+            .bauhaus .left-paragraph .text {
+                font-size: calc(0.37rem + 1vw);
+            }
+            
+            .bauhaus .left-paragraph .date {
+                font-size: calc(1.4rem + 1vw) !important;
+            }
+        }
+            
+        @media (max-width: 596px) {
+            .bauhaus .left-paragraph .text {
+                font-size: calc(0.32rem + 1vw);
+            }
+            
+            .bauhaus .left-paragraph .date {
+                font-size: calc(1.3rem + 1vw) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="bauhaus">
+            <div class="left-paragraph">
+                <div class="wrap">
+                    <p class="text top"> The Bauhaus the constructivists</p>
+                    <p class="text left-text">art deco movement <br> sans serif type since</p>
+                    <p class="text date">1927</p>
+                </div>
+                <b class="line"></b>
+            </div>
+
+            <div class="futura">
+                <p class="A">A</p>
+                <h1 class="FUTUR">FUTUR</h1> 
+            </div>
+
+            <div class="right">
+                <div class="wrap">
+                    <p class="text">
+                        It is derived from <br> 
+                        simple geometric <br> 
+                        forms designed by <br> 
+                        <b>Paul Renner</b>   
+                    </p>
+                </div>
+                <b class="line"></b>
+            </div>
+
+            <div class="square"></div>
+            <div class="rectangle"></div>
+            <div class="circle"></div>
+            <div class="triangle"></div>
+        </div>
+    </div>
+    <a href="https://i.pinimg.com/736x/a1/d0/d4/a1d0d4a557c2bf43bd920495fe72677f.jpg">
+        
+    </a>
+</body>
+</html>
